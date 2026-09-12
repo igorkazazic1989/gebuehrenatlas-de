@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baugenehmigungs-Rechner 2026 | Verfahrensfrei oder nicht?</title>
+    <meta name="description" content="Kostenloser Online-Rechner: Prüfen Sie sofort, ob Ihr Gartenhaus, Carport oder Pool in Ihrem Bundesland eine Baugenehmigung benötigt.">
+    <link rel="canonical" href="https://gebuehrenatlas.de/rechner.html">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .rechner-box { background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; max-width: 600px; margin: 2rem auto; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; color: #1e293b; }
+        .form-group select, .form-group input { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; box-sizing: border-box; }
+        .btn-calc { background: #2563eb; color: white; border: none; padding: 1rem; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; width: 100%; transition: background 0.2s; }
+        .btn-calc:hover { background: #1d4ed8; }
+        #result-box { display: none; margin-top: 1.5rem; padding: 1.5rem; border-radius: 8px; font-weight: 500; line-height: 1.5; font-size: 1.1rem; }
+        .result-green { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        .result-red { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+        .upsell-rechner { display: none; background: linear-gradient(135deg, #f8fafc, #e2e8f0); padding: 1.5rem; border: 1px solid #cbd5e1; border-radius: 8px; margin-top: 1rem; text-align: center; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html">🏛️ GebührenAtlas.de</a>
+        <span style="float: right;"><a href="rechner.html" style="color: #2563eb; font-weight: bold; text-decoration: none;">🧮 Genehmigungs-Rechner</a></span>
+    </header>
+    <main class="container">
+        <h1 style="text-align: center;">Brauche ich eine Baugenehmigung?</h1>
+        <p style="text-align: center; color: #475569;">Wählen Sie Ihr Bundesland und Projekt aus, um sofort zu sehen, ob Sie verfahrensfrei bauen dürfen.</p>
+
+        <div class="rechner-box">
+            <div class="form-group">
+                <label for="state">Bundesland</label>
+                <select id="state">
+                    <option value="Bayern">Bayern (BayBO)</option>
+                    <option value="NRW">Nordrhein-Westfalen (BauO NRW)</option>
+                    <option value="Hessen">Hessen (HBO)</option>
+                    <option value="Berlin">Berlin (BauO Bln)</option>
+                    <option value="Hamburg">Hamburg (HBauO)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="project">Bauprojekt</label>
+                <select id="project" onchange="updateUnit()">
+                    <option value="carport">Carport / Garage</option>
+                    <option value="gartenhaus">Gartenhaus</option>
+                    <option value="pool">Pool / Schwimmbecken</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="size">Größe (<span id="unit-label">m² Grundfläche</span>)</label>
+                <input type="number" id="size" placeholder="z.B. 40" required>
+            </div>
+
+            <button class="btn-calc" onclick="calculate()">Jetzt prüfen</button>
+
+            <div id="result-box"></div>
+            
+            <div id="upsell-box" class="upsell-rechner">
+                <h3 style="margin-top:0; font-size:1.2rem;">Bereiten Sie Ihre Unterlagen fehlerfrei vor 🚀</h3>
+                <p style="font-size: 0.95rem; color: #475569; margin-bottom: 1rem;">Egal ob Bauantrag oder verfahrensfreie Baumeldung: Mit unserem Word-Template haben Sie alle Formulare, Checklisten und rechtssicheren Anschreiben sofort parat.</p>
+                <a href="https://kazazic.gumroad.com/l/gartenhaus-antrag-os" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #0f172a; color: #fff; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 6px; font-weight: bold;">Bauantrag-OS herunterladen (19 €)</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 GebührenAtlas</p>
+        <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a> | <a href="agb.html">AGB</a>
+    </footer>
+
+    <script>
+        const limits = {
+            'Bayern': { carport: 50, gartenhaus: 75, pool: 100 },
+            'NRW': { carport: 30, gartenhaus: 30, pool: 100 },
+            'Hessen': { carport: 50, gartenhaus: 30, pool: 100 },
+            'Berlin': { carport: 30, gartenhaus: 10, pool: 100 },
+            'Hamburg': { carport: 50, gartenhaus: 30, pool: 100 }
+        };
+
+        function updateUnit() {
+            const project = document.getElementById('project').value;
+            const label = document.getElementById('unit-label');
+            if (project === 'pool' || project === 'gartenhaus') {
+                label.innerText = 'm³ Rauminhalt (Volumen)';
+            } else {
+                label.innerText = 'm² Grundfläche';
+            }
+        }
+
+        function calculate() {
+            const state = document.getElementById('state').value;
+            const project = document.getElementById('project').value;
+            const size = parseFloat(document.getElementById('size').value);
+            const resultBox = document.getElementById('result-box');
+            const upsellBox = document.getElementById('upsell-box');
+
+            if (!size || size <= 0) {
+                alert("Bitte geben Sie eine gültige Größe ein.");
+                return;
+            }
+
+            const limit = limits[state][project];
+            const unit = (project === 'pool' || project === 'gartenhaus') ? 'm³' : 'm²';
+
+            resultBox.style.display = 'block';
+            upsellBox.style.display = 'block';
+
+            if (size <= limit) {
+                resultBox.className = 'result-green';
+                resultBox.innerHTML = `✅ <strong>Grünes Licht!</strong> In ${state} sind ${project}s bis ${limit} ${unit} im Regelfall <strong>verfahrensfrei</strong>. <br><br><span style="font-size:0.9rem; font-weight:normal;">Hinweis: Auch beim verfahrensfreien Bauen müssen örtliche Bebauungspläne und Grenzabstände zwingend eingehalten werden. Reichen Sie vorsichtshalber eine Baumeldung/Anzeige ein.</span>`;
+            } else {
+                resultBox.className = 'result-red';
+                resultBox.innerHTML = `⚠️ <strong>Genehmigungspflichtig!</strong> In ${state} liegt die Freigrenze für ${project}s bei ${limit} ${unit}. Mit Ihren ${size} ${unit} benötigen Sie zwingend einen offiziellen Bauantrag.`;
+            }
+        }
+    </script>
+</body>
+</html>
