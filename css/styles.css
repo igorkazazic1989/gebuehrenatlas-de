@@ -1,23 +1,32 @@
-
 :root { --primary: #004b7c; --bg: #f9fafb; --text: #333; --border: #e5e7eb; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); background:
+var(--bg); line-height: 1.6; }
 header { background: var(--primary); color: #fff; padding: 1.5rem 5%; }
 header a { color: #fff; text-decoration: none; font-weight: bold; font-size: 1.5rem; }
 .container { max-width: 1000px; margin: 2rem auto; padding: 0 5%; }
 h1, h2, h3 { color: #111827; margin-bottom: 1rem; }
-.card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding:
+1.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
 .table { width: 100%; border-collapse: collapse; }
-.table th, .table td { padding: 1rem; border-bottom: 1px solid var(--border); text-align: left; }
+.table th, .table td { padding: 1rem; border-bottom: 1px solid var(--border); text-align:
+left; }
 .table th { background: #f3f4f6; width: 40%; }
 .price { font-size: 1.25rem; font-weight: bold; color: var(--primary); }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
-.btn-grid { display: block; background: #fff; border: 1px solid var(--primary); color: var(--primary); padding: 1rem; text-align: center; border-radius: 6px; text-decoration: none; font-weight: bold; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:
+1rem; }
+.btn-grid { display: block; background: #fff; border: 1px solid var(--primary); color:
+var(--primary); padding: 1rem; text-align: center; border-radius: 6px; text-decoration:
+none; font-weight: bold; }
 .btn-grid:hover { background: var(--primary); color: #fff; }
-.upsell { background: linear-gradient(135deg, #1e3a8a, #1e40af); color: #fff; padding: 2rem; border-radius: 8px; text-align: center; }
-.upsell .btn { display: inline-block; background: #fbbf24; color: #92400e; padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 1rem; }
+.upsell { background: linear-gradient(135deg, #1e3a8a, #1e40af); color: #fff; padding:
+2rem; border-radius: 8px; text-align: center; }
+.upsell .btn { display: inline-block; background: #fbbf24; color: #92400e; padding: 0.75rem
+1.5rem; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 1rem; }
 .upsell .btn:hover { background: #f59e0b; }
-footer { background: #111827; color: #9ca3af; text-align: center; padding: 2rem; margin-top: 4rem; }
+footer { background: #111827; color: #9ca3af; text-align: center; padding: 2rem; margintop: 4rem; }
 footer a { color: #9ca3af; text-decoration: none; margin: 0 10px; }
 .breadcrumb { font-size: 0.9rem; margin-bottom: 1rem; color: #6b7280; }
 .breadcrumb a { color: var(--primary); text-decoration: none; }
+
+==============================

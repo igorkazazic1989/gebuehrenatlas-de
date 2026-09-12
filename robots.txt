@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://yourusername.github.io/gebuehrenatlas/sitemap.xml
+Sitemap: https://gebuehrenatlas.de/sitemap.xml

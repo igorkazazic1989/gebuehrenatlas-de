@@ -1,82 +1,91 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wassergebühren Köln 2026: Wasserzähler & Verbrauch Rechner</title>
-    <meta name="description" content="Trinkwassergebühren in Köln berechnen. Setzt sich aus Grundgebühr (Zählergröße) und Mengenpreis (pro m³) zusammen.">
-    <link rel="stylesheet" href="../../css/styles.css">
-    <style>
-        .calc-box { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-top: 4px solid #2563eb; margin: 2rem 0; }
-        .calc-row { margin-bottom: 1rem; }
-        .calc-row label { display: block; font-weight: bold; margin-bottom: 0.5rem; color: #1e293b; }
-        .calc-row select, .calc-row input { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 1rem; }
-        .calc-result { background: #f8fafc; padding: 1.5rem; border-radius: 4px; margin-top: 1.5rem; text-align: center; border: 1px solid #e2e8f0; }
-        .calc-result h3 { margin: 0; color: #64748b; font-size: 1rem; text-transform: uppercase; }
-        .calc-result .big-price { font-size: 2.5rem; font-weight: bold; color: #0f172a; margin: 0.5rem 0; }
-        .source-box { font-size: 0.85rem; color: #64748b; background: #f1f5f9; padding: 1rem; border-radius: 4px; margin-top: 2rem; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wassergebühren Köln 2026: Wasserzähler & Verbrauch Rechner</title>
+<meta name="description" content="Trinkwassergebühren in Köln berechnen. Setzt sich aus
+Grundgebühr (Zählergröße) und Mengenpreis (pro m³) zusammen.">
+<link rel="stylesheet" href="../../css/styles.css">
+<style>
+.calc-box { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px
+6px -1px rgba(0,0,0,0.1); border-top: 4px solid #2563eb; margin: 2rem 0; }
+.calc-row { margin-bottom: 1rem; }
+.calc-row label { display: block; font-weight: bold; margin-bottom: 0.5rem; color:
+#1e293b; }
+.calc-row select, .calc-row input { width: 100%; padding: 0.75rem; border: 1px
+solid #cbd5e1; border-radius: 4px; font-size: 1rem; }
+.calc-result { background: #f8fafc; padding: 1.5rem; border-radius: 4px; margintop: 1.5rem; text-align: center; border: 1px solid #e2e8f0; }
+.calc-result h3 { margin: 0; color: #64748b; font-size: 1rem; text-transform:
+uppercase; }
+.calc-result .big-price { font-size: 2.5rem; font-weight: bold; color: #0f172a;
+
+margin: 0.5rem 0; }
+.source-box { font-size: 0.85rem; color: #64748b; background: #f1f5f9; padding:
+1rem; border-radius: 4px; margin-top: 2rem; }
+</style>
 </head>
 <body>
-    <header><a href="../../index.html">🏛️ GebührenAtlas.de</a></header>
-    <main class="container">
-        <div class="breadcrumb"><a href="../../index.html">Startseite</a> &gt; <a href="../index.html">Wassergebühren</a> &gt; Köln</div>
-        
-        <h1 style="margin-bottom: 0.5rem;">Trinkwassergebühren Köln (2026)</h1>
-        <p style="color: #64748b; margin-top: 0;">Berechnen Sie Ihre Wasserkosten aus dem Mengenpreis und der Zähler-Grundgebühr.</p>
+<header><a href="../../index.html"> GebührenAtlas.de</a></header>
+<main class="container">
+<div class="breadcrumb"><a href="../../index.html">Startseite</a> &gt; <a
+href="../index.html">Wassergebühren</a> &gt; Köln</div>
+  
+<h1 style="margin-bottom: 0.5rem;">Trinkwassergebühren Köln (2026)</h1>
+<p style="color: #64748b; margin-top: 0;">Berechnen Sie Ihre Wasserkosten aus dem
+Mengenpreis und der Zähler-Grundgebühr.</p>
+<div class="calc-box">
+<div class="calc-row">
+<label for="persons">Personen im Haushalt (Schätzt 45 m³ pro Kopf)</label>
+<select id="persons" onchange="updateVolume()">
+<option value="1">1 Person (~45 m³)</option>
+<option value="2" selected>2 Personen (~90 m³)</option>
+<option value="3">3 Personen (~135 m³)</option>
+<option value="4">4 Personen (~180 m³)</option>
+</select>
+</div>
+<div class="calc-row">
+<label for="volume">Jährlicher Verbrauch in Kubikmetern (m³)</label>
+<input type="number" id="volume" value="90" oninput="calculateWasser()">
+</div>
+  
+<div class="calc-result">
+<h3>Voraussichtliche Wasserkosten (Trinkwasser)</h3>
+<div class="big-price"><span id="yearlyCost">278,92 €</span></div>
+<p style="color: #475569; margin: 0;">Grundgebühr: 104,32 € | Verbrauch:
+<span id="usageCost">174,60 €</span></p>
+</div>
+</div>
+<script>
+// Grundpreis Q3 4 (Standardzähler) = 104.32 €, Arbeitspreis = 1.94 €/m3
+(Beispieldaten Köln)
+const grundgebuehr = 104.32;
+const arbeitspreis = 1.94;
+function updateVolume() {
+let persons = parseInt(document.getElementById('persons').value);
+document.getElementById('volume').value = persons * 45;
+calculateWasser();
+}
+function calculateWasser() {
+let vol = parseFloat(document.getElementById('volume').value) || 0;
+let usage = vol * arbeitspreis;
+let total = grundgebuehr + usage;
+  
+document.getElementById('usageCost').innerText = usage.toLocaleString('deDE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
+document.getElementById('yearlyCost').innerText = total.toLocaleString('deDE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
+}
+</script>
+<div class="source-box">
+<strong>Datengrundlage & Quelle:</strong> <br>
+Preisblatt für die Versorgung mit Trinkwasser (Q3 4 Zähler). Ohne
+Schmutzwassergebühren. <br>
+<em>Herausgeber: RheinEnergie AG. Stand: Januar 2026.</em>
+</div>
+</main>
+<footer>
 
-        <div class="calc-box">
-            <div class="calc-row">
-                <label for="persons">Personen im Haushalt (Schätzt 45 m³ pro Kopf)</label>
-                <select id="persons" onchange="updateVolume()">
-                    <option value="1">1 Person (~45 m³)</option>
-                    <option value="2" selected>2 Personen (~90 m³)</option>
-                    <option value="3">3 Personen (~135 m³)</option>
-                    <option value="4">4 Personen (~180 m³)</option>
-                </select>
-            </div>
-            <div class="calc-row">
-                <label for="volume">Jährlicher Verbrauch in Kubikmetern (m³)</label>
-                <input type="number" id="volume" value="90" oninput="calculateWasser()">
-            </div>
-            
-            <div class="calc-result">
-                <h3>Voraussichtliche Wasserkosten (Trinkwasser)</h3>
-                <div class="big-price"><span id="yearlyCost">278,92 €</span></div>
-                <p style="color: #475569; margin: 0;">Grundgebühr: 104,32 € | Verbrauch: <span id="usageCost">174,60 €</span></p>
-            </div>
-        </div>
-
-        <script>
-            // Grundpreis Q3 4 (Standardzähler) = 104.32 €, Arbeitspreis = 1.94 €/m3 (Beispieldaten Köln)
-            const grundgebuehr = 104.32;
-            const arbeitspreis = 1.94;
-
-            function updateVolume() {
-                let persons = parseInt(document.getElementById('persons').value);
-                document.getElementById('volume').value = persons * 45;
-                calculateWasser();
-            }
-
-            function calculateWasser() {
-                let vol = parseFloat(document.getElementById('volume').value) || 0;
-                let usage = vol * arbeitspreis;
-                let total = grundgebuehr + usage;
-                
-                document.getElementById('usageCost').innerText = usage.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
-                document.getElementById('yearlyCost').innerText = total.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
-            }
-        </script>
-
-        <div class="source-box">
-            <strong>Datengrundlage & Quelle:</strong> <br>
-            Preisblatt für die Versorgung mit Trinkwasser (Q3 4 Zähler). Ohne Schmutzwassergebühren. <br>
-            <em>Herausgeber: RheinEnergie AG. Stand: Januar 2026.</em>
-        </div>
-    </main>
-    <footer>
-        <p>&copy; 2026 GebührenAtlas</p>
-    <p style="font-size:0.85rem; color:#64748b; margin-top:0.5rem;">Letzte Prüfung: 12.09.2026 von Igor Kazazic, keine Rechtsberatung</p>
+<p>&copy; 2026 GebührenAtlas</p>
+<p style="font-size:0.85rem; color:#64748b; margin-top:0.5rem;">Zuletzt geprüft: September 2026 von Igor Kazazic, geprüft nach HBO/BauO, keine Rechtsberatung</p>
 </footer>
 </body>
 </html>
