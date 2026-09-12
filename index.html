@@ -3,88 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GebührenAtlas.de - Baugenehmigungen & Kosten 2026</title>
-    <meta name="description" content="Finden Sie schnell die behördlichen Kosten und Vorgaben für Ihre Baugenehmigung (Gartenhaus, Carport, Pool) in Ihrer Stadt.">
-    <link rel="canonical" href="https://gebuehrenatlas.de/">
+    <title>GebührenAtlas.de - Baugenehmigungen & Kommunale Gebühren</title>
+    <meta name="description" content="Kosten, Vorschriften und Rechner für Baugenehmigungen (Gartenhaus, Carport) und kommunale Gebühren (Müll, Hundesteuer) in Deutschland.">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <a href="index.html">🏛️ GebührenAtlas.de</a>
-        <span style="float: right;"><a href="rechner.html" style="color: #2563eb; font-weight: bold; text-decoration: none;">🧮 Genehmigungs-Rechner</a></span>
-    </header>
+    <header><a href="index.html">🏛️ GebührenAtlas.de</a></header>
     <main class="container">
-        <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #e2e8f0;">
-            <h2 style="margin-top: 0;">Baurecht nach Bundesland (2026)</h2>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                <a href="bayern.html" style="font-weight: bold; color: #2563eb;">📍 Bayern</a> | 
-                <a href="nrw.html" style="font-weight: bold; color: #2563eb;">📍 Nordrhein-Westfalen</a> | 
-                <a href="hessen.html" style="font-weight: bold; color: #2563eb;">📍 Hessen</a> | 
-                <a href="baden-wuerttemberg.html" style="font-weight: bold; color: #2563eb;">📍 Baden-Württemberg</a>
-            </div>
-        </div>
-        <h1 style="text-align: center; margin-bottom: 0.5rem;">Baukosten & Gebühren in Ihrer Stadt</h1>
-        <p style="text-align: center; color: #475569; margin-bottom: 3rem;">Wählen Sie Ihre Stadt aus, um die spezifischen Regeln, Kosten und Dokumente für Gartenhäuser, Carports und Pools zu sehen.</p>
+        <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem; color: #0f172a;">Der GebührenAtlas</h1>
+        <p style="color: #475569; font-size: 1.1rem; margin-top: 0; margin-bottom: 2rem;">Deutschlands große Datenbank für Bau-Vorschriften und kommunale Abgaben.</p>
 
-        <h2>Bayern</h2>
-        <div class="grid" style="margin-bottom: 2.5rem;">
-            <a href="muenchen/index.html" class="btn-grid">📍 München</a>
-            <a href="nuernberg/index.html" class="btn-grid">📍 Nürnberg</a>
-            <a href="augsburg/index.html" class="btn-grid">📍 Augsburg</a>
-            <a href="regensburg/index.html" class="btn-grid">📍 Regensburg</a>
-            <a href="ingolstadt/index.html" class="btn-grid">📍 Ingolstadt</a>
-            <a href="wuerzburg/index.html" class="btn-grid">📍 Würzburg</a>
+        <h2 style="margin-top: 2rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; color: #1e293b;">1. Baugenehmigungen</h2>
+        <div class="grid" style="margin-top: 1.5rem;">
+            <a href="gartenhaus-genehmigungsfrei-modelle.html" class="btn-grid" style="background: #f8fafc; color: #0f172a; border-color: #cbd5e1;">🏡 Gartenhaus</a>
+            <a href="carport-baugenehmigung-nrw-bayern.html" class="btn-grid" style="background: #f8fafc; color: #0f172a; border-color: #cbd5e1;">🚗 Carport</a>
+            <a href="pool-baugenehmigung-ab-wann.html" class="btn-grid" style="background: #f8fafc; color: #0f172a; border-color: #cbd5e1;">🏊‍♂️ Pool</a>
+            <a href="#" class="btn-grid" style="background: #f8fafc; color: #0f172a; border-color: #cbd5e1;">🚙 Garage</a>
+            <a href="#" class="btn-grid" style="background: #f8fafc; color: #0f172a; border-color: #cbd5e1;">☀️ Terrasse</a>
+            <a href="#" class="btn-grid" style="background: #f8fafc; color: #0f172a; border-color: #cbd5e1;">🏗️ Anbau</a>
+            <a href="#" class="btn-grid" style="background: #f8fafc; color: #0f172a; border-color: #cbd5e1;">🏠 Tiny House</a>
         </div>
 
-        <h2>Nordrhein-Westfalen (NRW)</h2>
-        <div class="grid" style="margin-bottom: 2.5rem;">
-            <a href="koeln/index.html" class="btn-grid">📍 Köln</a>
-            <a href="duesseldorf/index.html" class="btn-grid">📍 Düsseldorf</a>
-            <a href="dortmund/index.html" class="btn-grid">📍 Dortmund</a>
-            <a href="essen/index.html" class="btn-grid">📍 Essen</a>
-            <a href="bochum/index.html" class="btn-grid">📍 Bochum</a>
-            <a href="bonn/index.html" class="btn-grid">📍 Bonn</a>
+        <h2 style="margin-top: 3.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; color: #1e293b;">2. Kommunale Gebühren</h2>
+        <div class="grid" style="margin-top: 1.5rem;">
+            <a href="muellgebuehren/index.html" class="btn-grid" style="background: #f8fafc; color: #0f172a; border-color: #cbd5e1;">🗑️ Müllgebühren</a>
+            <a href="wassergebuehren/index.html" class="btn-grid" style="background: #f8fafc; color: #0f172a; border-color: #cbd5e1;">💧 Wassergebühren</a>
+            <a href="abwassergebuehren/index.html" class="btn-grid" style="background: #f8fafc; color: #0f172a; border-color: #cbd5e1;">🚽 Abwasser</a>
+            <a href="hundesteuer/index.html" class="btn-grid" style="background: #f8fafc; color: #0f172a; border-color: #cbd5e1;">🐕 Hundesteuer</a>
+            <a href="kita-gebuehren/index.html" class="btn-grid" style="background: #f8fafc; color: #0f172a; border-color: #cbd5e1;">👶 Kita-Gebühren</a>
+            <a href="grundsteuer/index.html" class="btn-grid" style="background: #f8fafc; color: #0f172a; border-color: #cbd5e1;">🏠 Grundsteuer</a>
         </div>
 
-        <h2>Hessen</h2>
-        <div class="grid" style="margin-bottom: 2.5rem;">
-            <a href="frankfurt/index.html" class="btn-grid">📍 Frankfurt</a>
-            <a href="wiesbaden/index.html" class="btn-grid">📍 Wiesbaden</a>
-            <a href="kassel/index.html" class="btn-grid">📍 Kassel</a>
-            <a href="darmstadt/index.html" class="btn-grid">📍 Darmstadt</a>
-            <a href="offenbach/index.html" class="btn-grid">📍 Offenbach</a>
-            <a href="hanau/index.html" class="btn-grid">📍 Hanau</a>
+        <h2 style="margin-top: 3.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; color: #1e293b;">Beliebte Kombinationen (Direktzugriff)</h2>
+        <div class="grid" style="margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <a href="muenchen/baugenehmigung-pool.html" class="btn-grid" style="border-color: #2563eb; color: #2563eb; font-weight: bold;">📍 München + Pool (Bau)</a>
+            <a href="muenchen/baugenehmigung-gartenhaus.html" class="btn-grid" style="border-color: #2563eb; color: #2563eb; font-weight: bold;">📍 München + Gartenhaus</a>
+            <a href="berlin/baugenehmigung-carport.html" class="btn-grid" style="border-color: #2563eb; color: #2563eb; font-weight: bold;">📍 Berlin + Carport</a>
+            <a href="hundesteuer/berlin/index.html" class="btn-grid" style="border-color: #0f172a; color: #0f172a; font-weight: bold;">📍 Berlin + Hundesteuer</a>
+            <a href="abwassergebuehren/hamburg/index.html" class="btn-grid" style="border-color: #0f172a; color: #0f172a; font-weight: bold;">📍 Hamburg + Abwasser</a>
+            <a href="kita-gebuehren/muenchen/index.html" class="btn-grid" style="border-color: #0f172a; color: #0f172a; font-weight: bold;">📍 München + Kita</a>
         </div>
-
-        <h2>Baden-Württemberg</h2>
-        <div class="grid" style="margin-bottom: 2.5rem;">
-            <a href="stuttgart/index.html" class="btn-grid">📍 Stuttgart</a>
-        </div>
-
-        <h2>Sachsen</h2>
-        <div class="grid" style="margin-bottom: 2.5rem;">
-            <a href="leipzig/index.html" class="btn-grid">📍 Leipzig</a>
-        </div>
-
-        <h2>Stadtstaaten</h2>
-        <div class="grid" style="margin-bottom: 2.5rem;">
-            <a href="berlin/index.html" class="btn-grid">📍 Berlin</a>
-            <a href="hamburg/index.html" class="btn-grid">📍 Hamburg</a>
-        </div>
-    
-        <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; margin-top: 2rem; border: 1px solid #e2e8f0;">
-            <h2 style="margin-top: 0;">Wichtige Ratgeber & Checklisten (Kauf-Ratgeber)</h2>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                <a href="pool-baugenehmigung-ab-wann.html" style="font-weight: bold; color: #2563eb;">🏊‍♂️ Pool Baugenehmigung</a> | 
-                <a href="carport-baugenehmigung-nrw-bayern.html" style="font-weight: bold; color: #2563eb;">🚗 Carport NRW & Bayern</a> | 
-                <a href="gartenhaus-genehmigungsfrei-modelle.html" style="font-weight: bold; color: #2563eb;">🏡 Gartenhaus Modelle</a> | 
-                <a href="checkliste-dokumente-bauamt.html" style="font-weight: bold; color: #2563eb;">📋 Bauamt Checkliste</a> |
-                <a href="rechner.html" style="font-weight: bold; color: #2563eb;">🧮 Genehmigungs-Rechner</a>
-            </div>
-        </div>
-
     </main>
-    <footer>
+    <footer style="margin-top: 4rem;">
         <p>&copy; 2026 GebührenAtlas</p>
         <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a> | <a href="agb.html">AGB</a>
     </footer>
