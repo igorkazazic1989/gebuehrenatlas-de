@@ -1,11 +1,12 @@
+cat << 'EOF' > hamburg/index.html
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Behördliche Kosten & Gebühren in Hamburg (2026)</title>
-    <meta name="description" content="Übersicht aller wichtigen behördlichen Gebühren in Hamburg. Informieren Sie sich über Kosten für Baugenehmigungen, Parkausweise und mehr.">
-    <link rel="canonical" href="https://yourusername.github.io/gebuehrenatlas/hamburg/">
+    <meta name="description" content="Übersicht aller wichtigen behördlichen Gebühren in Hamburg. Informieren Sie sich über Kosten für Baugenehmigungen (Gartenhaus, Carport, Pool).">
+    <link rel="canonical" href="https://gebuehrenatlas.de/hamburg/">
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
@@ -13,10 +14,17 @@
     <main class="container">
         <div class="breadcrumb"><a href="../index.html">Startseite</a> &gt; Hamburg</div>
         <h1>Gebühren in Hamburg</h1>
-        <div class="grid">
-            <a href="baugenehmigung-gartenhaus.html" class="btn-grid">Baugenehmigung Gartenhaus Kosten Hamburg</a>
+        <p>Wählen Sie Ihr Bauprojekt in Hamburg aus, um spezifische Kosten, Dauer und lokale Richtlinien der Hamburgischen Bauordnung (HBauO) zu sehen:</p>
+        <div class="grid" style="margin-top: 2rem;">
+            <a href="baugenehmigung-gartenhaus.html" class="btn-grid">🏡 Baugenehmigung Gartenhaus</a>
+            <a href="baugenehmigung-carport.html" class="btn-grid">🚗 Baugenehmigung Carport</a>
+            <a href="baugenehmigung-pool.html" class="btn-grid">🏊‍♂️ Baugenehmigung Pool</a>
         </div>
     </main>
-    <footer><p>&copy; 2026 GebührenAtlas</p></footer>
+    <footer>
+        <p>&copy; 2026 GebührenAtlas</p>
+        <a href="../impressum.html">Impressum</a> | <a href="../datenschutz.html">Datenschutz</a> | <a href="../agb.html">AGB</a>
+    </footer>
 </body>
 </html>
+EOF
