@@ -25,15 +25,13 @@
         
         <h1 style="margin-bottom: 0.5rem;">Baugenehmigung Anbau: München (2026)</h1>
         
-        <!-- 1. SVARA PÅ FRÅGAN FÖRST: BEHÖVER JAG BYGGLOV? -->
         <div class="alert-box alert-danger">
             <h2 style="margin-top:0;">🛑 Brauche ich in München eine Genehmigung?</h2>
-            <p style="margin-bottom:0; font-size: 1.1rem;"><strong>JA.</strong> Verfahrensfrei bis 75 m³ (nur ohne Aufenthaltsraum/Feuerstätte). Ein echter Anbau (Wohnraum) ist IMMER genehmigungspflichtig.</p>
+            <p style="margin-bottom:0; font-size: 1.1rem;"><strong>JA.</strong> Ein echter Anbau (Wohnraumerweiterung) ist nach der Bayerischen Bauordnung (BayBO) IMMER baugenehmigungspflichtig.</p>
         </div>
 
-        <!-- 2. DEN ÄKTA KALKULATORN (Baserad på Rohbausumme & Gebührenordnung) -->
         <h2>Exakter Gebührenrechner (nach BayBO)</h2>
-        <p>In Bayern werden die Amtsgebühren nicht pauschal berechnet. Sie ergeben sich aus der <strong>Rohbausumme</strong> (umbauter Raum × amtlicher Bauwert) multipliziert mit dem festgelegten Gebührensatz der Kommune.</p>
+        <p>In Bayern basieren die Amtsgebühren auf der <strong>Rohbausumme</strong> (umbauter Raum × amtlicher Bauwert) multipliziert mit dem kommunalen Gebührensatz.</p>
         
         <div class="calc-box">
             <div class="calc-row">
@@ -50,42 +48,29 @@
         </div>
 
         <script>
-            // Äkta kalkylator-logik för tysk byggnadsrätt
             const promilleSatz = 10; 
-            const bauwertProQm = 800; // Genomsnittligt formellt värde per m2 (Schätzwert för Rohbau, inte faktiska byggkostnader)
+            const bauwertProQm = 800;
 
             function calculateGebuehr() {
                 let qm = parseFloat(document.getElementById('qm').value) || 0;
                 let rohbauSumme = qm * bauwertProQm;
-                
-                // Beräkna gebühr i promille
                 let gebuehr = rohbauSumme * (promilleSatz / 1000);
-                
-                // Minimumgebühr (ofta 100€ eller 200€)
                 if(gebuehr < 200) gebuehr = 200;
 
                 document.getElementById('rohbauValue').innerText = rohbauSumme.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
                 document.getElementById('exactCost').innerText = gebuehr.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
             }
-            // Init körning
             calculateGebuehr();
         </script>
 
-        <!-- 3. MONETARISERING 2.0 (LEAD GENERATION ISTÄLLET FÖR BARA PDF) -->
         <div class="lead-gen-box">
             <span style="background: #10b981; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Kostenloser Service</span>
             <h2 style="margin-top: 1rem; font-size: 1.8rem; color: #fff;">Bauantrag für Anbau auslagern</h2>
-            <p style="color: #94a3b8; margin-bottom: 1.5rem; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">Ein Anbau erfordert zwingend einen bauvorlageberechtigten Architekten oder Ingenieur (Statik, Wärmeschutznachweis). Sparen Sie Zeit und vergleichen Sie geprüfte Experten in München.</p>
+            <p style="color: #94a3b8; margin-bottom: 1.5rem; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">Ein Anbau erfordert zwingend einen bauvorlageberechtigten Architekten oder Ingenieur. Vergleichen Sie geprüfte Experten in München.</p>
             
             <a href="#" class="btn-lead">🚀 3 Kostenlose Architekten-Angebote erhalten</a>
-            <p style="color: #64748b; font-size: 0.8rem; margin-top: 1rem;">Unverbindlich. Lokale Experten aus München. (Powered by Aroundhome / Käuferportal Affiliate)</p>
+            <p style="color: #64748b; font-size: 0.8rem; margin-top: 1rem;">Unverbindlich. Lokale Experten aus München.</p>
         </div>
-
-        <div style="margin-top: 2rem; border-top: 1px solid #e2e8f0; padding-top: 2rem;">
-            <h3>DIY-Alternative für kleinere Projekte</h3>
-            <p>Möchten Sie den bürokratischen Ablauf zunächst selbst strukturieren? <a href="https://kazazic.gumroad.com/l/gartenhaus-antrag-os" style="color: #2563eb; font-weight:bold;">Laden Sie unser Bauantrag-OS (Word) für 29€ herunter</a>.</p>
-        </div>
-
     </main>
     <footer style="margin-top: 4rem;">
         <p>&copy; 2026 GebührenAtlas</p>
