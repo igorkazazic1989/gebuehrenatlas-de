@@ -2,67 +2,40 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Einliegerwohnung Stuttgart: Regeln, Rechner & Fachbetriebe (2026)</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <style>
-        .alert-box { padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border-left: 5px solid; }
-        .alert-danger { background: #fef2f2; border-color: #ef4444; color: #991b1b; }
-        .calc-box { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-top: 4px solid #2563eb; margin: 2rem 0; }
-        .calc-row { margin-bottom: 1.5rem; }
-        .calc-row label { display: block; font-weight: bold; margin-bottom: 0.5rem; color: #1e293b; }
-        .calc-row input { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 1.1rem; }
-        .lead-gen-box { background: linear-gradient(135deg, #1e293b, #0f172a); color: white; padding: 2.5rem; border-radius: 12px; margin-top: 2rem; text-align: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
-        .btn-lead { background: #10b981; color: white; padding: 1rem 2rem; font-size: 1.2rem; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block; margin-top: 1rem; transition: background 0.3s; }
-        .btn-lead:hover { background: #059669; }
-    </style>
+    <title>Baugenehmigung Einliegerwohnung Stuttgart (BW) | Regeln & Kosten</title>
+    <meta name="description" content="Alles zur Baugenehmigung für Einliegerwohnung in Stuttgart. Infos zur Landesbauordnung (LBO) Baden-Württemberg, Abstandsflächen und Zuständigkeiten beim Baurechtsamt Stuttgart.">
+    <style>body { font-family: system-ui, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; color: #334155; } h1, h2, h3 { color: #0f172a; }</style>
 </head>
 <body>
-    <header><a href="../index.html">🏛️ GebührenAtlas.de</a></header>
-    <main class="container">
-        <div class="breadcrumb"><a href="../index.html">Startseite</a> &gt; <a href="index.html">Stuttgart</a> &gt; Einliegerwohnung</div>
-        
-        <h1 style="margin-bottom: 0.5rem;">Einliegerwohnung: Stuttgart (2026)</h1>
-        
-        <div class="alert-box alert-danger">
-            <h2 style="margin-top:0;">🛑 Baugenehmigung ZWINGEND ERFORDERLICH</h2>
-            <p style="margin-bottom:0; font-size: 1.1rem;">Der Neubau oder Ausbau (Nutzungsänderung) zu einer separaten Einliegerwohnung erfordert IMMER einen formellen Bauantrag und einen Stellplatznachweis.</p>
-        </div>
-
-        <h2>Exakter Daten-Rechner</h2>
-        <div class="calc-box">
-            <div class="calc-row">
-                <label>Wohnfläche der Einliegerwohnung (in m²)</label>
-                <input type="number" id="inputValue" value="45" oninput="calculateValues()">
+    <div style="font-size:0.9rem; color:#64748b; margin-bottom:2rem;"><a href="../index.html" style="color:#2563eb;">GebührenAtlas</a> &gt; Stuttgart &gt; Einliegerwohnung</div>
+    
+    <h1>Baugenehmigung: Einliegerwohnung in Stuttgart (2026)</h1>
+    
+    <p>Wer in <strong>Stuttgart (BW)</strong> ein Bauprojekt im Bereich Einliegerwohnung plant, muss sich zwingend an die rechtlichen Vorgaben der örtlichen Behörden halten. Maßgeblich für Ihr Vorhaben ist die <strong>Landesbauordnung (LBO) Baden-Württemberg</strong>.</p>
+    
+    <h2>1. Genehmigungsfrei oder Bauantrag?</h2>
+    <p>Der Bau/Einbau von Einliegerwohnung in Stuttgart erfordert nahezu immer eine formelle Genehmigung oder Fachunternehmererklärung nach der Landesbauordnung (LBO) Baden-Württemberg. Das zuständige Amt für Nachfragen oder die Einreichung der Bauvorlagen ist das <strong>Baurechtsamt Stuttgart</strong> in Stuttgart.</p>
+    
+    <h2>2. Abstandsflächen & Nachbarrecht</h2>
+    <p>Auch wenn Ihr Vorhaben genehmigungsfrei sein sollte, müssen die Vorschriften zu Abstandsflächen auf Ihrem Grundstück in Stuttgart zwingend eingehalten werden. In der Regel beträgt der Mindestabstand zur Grundstücksgrenze 3 Meter.</p>
+    
+    
+            <div class="lead-box" style="background: linear-gradient(135deg, #1e293b, #0f172a); color: white; padding: 2.5rem; border-radius: 12px; margin: 2rem 0; text-align: center;">
+                <h3 style="margin-top:0; color:#fff;">Fachbetrieb für Einliegerwohnung in Stuttgart finden</h3>
+                <p style="color:#94a3b8;">Der Einbau/Bau erfordert zertifizierte Experten (für Förderungen und Bauantrag beim Baurechtsamt Stuttgart zwingend nötig). Holen Sie sich 3 unverbindliche Angebote aus der Region Stuttgart.</p>
+                <a href="#" style="display:inline-block; background:#10b981; color:#fff; padding:1rem 2rem; border-radius:6px; font-weight:bold; text-decoration:none;">🚀 3 Kostenlose Angebote erhalten</a>
             </div>
-            
-            <div style="background: #f8fafc; padding: 1.5rem; border-radius: 4px; margin-top: 1.5rem; text-align: center; border: 1px solid #e2e8f0;">
-                <p style="color: #64748b; font-size: 0.9rem; margin:0 0 10px 0;">Berechnete Rohbausumme (Schätzwert): <strong id="rohbauValue">-</strong></p>
-                <h3 style="margin: 0; color: #1e293b; font-size: 1.1rem; text-transform: uppercase;">Amtsgebühren (Baugenehmigung)</h3>
-                <div style="font-size: 3rem; font-weight: bold; color: #2563eb; margin: 0.5rem 0;"><span id="exactCost">-</span></div>
-                <p style="color: #10b981; font-weight:bold; margin:0;">Berechnung basiert auf der regionalen Baugebührenordnung.</p>
-            </div>
-        </div>
 
-        <script>
-            function calculateValues() {
-                let val = parseFloat(document.getElementById('inputValue').value) || 0;
-                let promille = 8;
-                let qm = val; let rohbau = qm * 800; let gebuehr = rohbau * (promille / 1000); if(gebuehr<200) gebuehr=200; document.getElementById('rohbauValue').innerText = rohbau.toLocaleString('de-DE') + ' €'; document.getElementById('exactCost').innerText = gebuehr.toLocaleString('de-DE', {minimumFractionDigits: 2}) + ' €';
-            }
-            calculateValues();
-        </script>
-
-        <div class="lead-gen-box">
-            <span style="background: #10b981; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Kostenloser Service in Stuttgart</span>
-            <h2 style="margin-top: 1rem; font-size: 1.8rem; color: #fff;">Architekten für Einliegerwohnung finden</h2>
-            <p style="color: #94a3b8; margin-bottom: 1.5rem; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">Für den Bauantrag und die Brandschutzplanung benötigen Sie zwingend einen bauvorlageberechtigten Architekten. Vergleichen Sie geprüfte Experten in Ihrer Region.</p>
-            
-            <a href="#" class="btn-lead">🚀 3 Kostenlose Angebote erhalten</a>
-            <p style="color: #64748b; font-size: 0.8rem; margin-top: 1rem;">Unverbindlich. Lokale Experten aus Stuttgart.</p>
-        </div>
-    </main>
-    <footer style="margin-top: 4rem;">
-        <p>&copy; 2026 GebührenAtlas</p>
+    <h2>3. Checkliste für den Antrag beim Baurechtsamt Stuttgart</h2>
+    <ul>
+        <li>Vollständig ausgefülltes Bauantragsformular der Stadt Stuttgart</li>
+        <li>Aktueller Auszug aus dem Liegenschaftskataster (Flurkarte)</li>
+        <li>Bauzeichnungen (Grundrisse, Schnitte, Ansichten im Maßstab 1:100)</li>
+        <li>Baubeschreibung nach den Vorgaben der Landesbauordnung (LBO) Baden-Württemberg</li>
+    </ul>
+    
+    <footer style="margin-top: 4rem; border-top: 1px solid #e2e8f0; padding-top: 2rem; text-align: center; color: #64748b;">
+        <p>&copy; 2026 GebührenAtlas.de - Baugenehmigungen Stuttgart</p>
     </footer>
 </body>
 </html>
