@@ -3,8 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grundsteuer Bayern 2026: Rechner (Flächenmodell) & Hebesatz</title>
-<meta name="description" content="Grundsteuer in Bayern und München berechnen. Aktuelle
 Hebesätze, Flächenmodell-Rechner für Wohnfläche und Grundstück.">
 <link rel="stylesheet" href="../../css/styles.css">
 <style>
@@ -27,22 +25,17 @@ margin: 0.5rem 0; }
 <header><a href="../../index.html"> GebührenAtlas.de</a></header>
 <main class="container">
 <div class="breadcrumb"><a href="../../index.html">Startseite</a> &gt; <a
-href="../index.html">Grundsteuer</a> &gt; Bayern (München)</div>
   
-<h1 style="margin-bottom: 0.5rem;">Grundsteuer Bayern (Flächenmodell 2026)</h1>
-<p style="color: #64748b; margin-top: 0;">Berechnen Sie die neue Grundsteuer B nach
 dem bayerischen Flächenmodell (Beispiel: Hebesatz München 535%).</p>
 <div class="calc-box">
 <div class="calc-row">
 <label for="grundFl">Grundstücksfläche in m²</label>
 <input type="number" id="grundFl" value="500"
-oninput="calculateGrundsteuer()">
 </div>
 <div class="calc-row">
 <label for="wohnFl">Wohnfläche in m²</label>
 
 <input type="number" id="wohnFl" value="120"
-oninput="calculateGrundsteuer()">
 </div>
   
 <div class="calc-result">
@@ -53,7 +46,6 @@ oninput="calculateGrundsteuer()">
 </div>
 </div>
 <script>
-function calculateGrundsteuer() {
 let grund = parseFloat(document.getElementById('grundFl').value) || 0;
 let wohn = parseFloat(document.getElementById('wohnFl').value) || 0;
   
@@ -69,7 +61,6 @@ document.getElementById('yearlyCost').innerText = total.toLocaleString('deDE', 
 </script>
 <div class="source-box">
 <strong>Datengrundlage & Quelle:</strong> <br>
-Bayerisches Grundsteuergesetz (BayGrStG). Flächenmodell mit festen
 Äquivalenzbeträgen.<br>
 <em>Herausgeber: Bayerisches Landesamt für Steuern. Stand: Januar 2026.</em>
 </div>
