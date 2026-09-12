@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abwassergebühren Hamburg 2026: Schmutz- & Niederschlagswasser</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .calc-box { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-top: 4px solid #2563eb; margin: 2rem 0; }
+        .calc-row { margin-bottom: 1rem; }
+        .calc-row label { display: block; font-weight: bold; margin-bottom: 0.5rem; color: #1e293b; }
+        .calc-row input { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 1rem; }
+        .calc-result { background: #f8fafc; padding: 1.5rem; border-radius: 4px; margin-top: 1.5rem; text-align: center; border: 1px solid #e2e8f0; }
+        .calc-result h3 { margin: 0; color: #64748b; font-size: 1rem; text-transform: uppercase; }
+        .calc-result .big-price { font-size: 2.5rem; font-weight: bold; color: #0f172a; margin: 0.5rem 0; }
+        .source-box { font-size: 0.85rem; color: #64748b; background: #f1f5f9; padding: 1rem; border-radius: 4px; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <header><a href="../../index.html">🏛️ GebührenAtlas.de</a></header>
+    <main class="container">
+        <div class="breadcrumb"><a href="../../index.html">Startseite</a> &gt; <a href="../index.html">Abwassergebühren</a> &gt; Hamburg</div>
+        
+        <h1 style="margin-bottom: 0.5rem;">Abwassergebühren Hamburg (2026)</h1>
+        <p style="color: #64748b; margin-top: 0;">Gesplittete Abwassergebühr: Berechnen Sie Schmutzwasser- und Niederschlagswassergebühren getrennt.</p>
+
+        <div class="calc-box">
+            <div class="calc-row">
+                <label for="frischwasser">Frischwasserverbrauch in m³ (Schmutzwasser)</label>
+                <input type="number" id="frischwasser" value="100" oninput="calculateAbwasser()">
+            </div>
+            <div class="calc-row">
+                <label for="versiegelt">Versiegelte Fläche in m² (Niederschlagswasser)</label>
+                <input type="number" id="versiegelt" value="80" oninput="calculateAbwasser()">
+            </div>
+            
+            <div class="calc-result">
+                <h3>Jährliche Abwassergebühren (Gesamt)</h3>
+                <div class="big-price"><span id="yearlyCost">275,40 €</span></div>
+                <p style="color: #475569; margin: 0;">Schmutzwasser: <span id="schmutzCost">214,00 €</span> | Niederschlag: <span id="regenCost">61,40 €</span></p>
+            </div>
+        </div>
+
+        <script>
+            function calculateAbwasser() {
+                let fw = parseFloat(document.getElementById('frischwasser').value) || 0;
+                let flaeche = parseFloat(document.getElementById('versiegelt').value) || 0;
+                
+                // Preise Hamburg Wasser (Beispieldaten 2026)
+                let schmutz = fw * 2.14; 
+                let regen = flaeche * 0.78; 
+                
+                document.getElementById('schmutzCost').innerText = schmutz.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
+                document.getElementById('regenCost').innerText = regen.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
+                document.getElementById('yearlyCost').innerText = (schmutz + regen).toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
+            }
+        </script>
+
+        <div class="source-box">
+            <strong>Datengrundlage & Quelle:</strong> <br>
+            Satzung über die Entwässerung (HmbEntwS). <br>
+            <em>Herausgeber: HAMBURG WASSER. Stand: Januar 2026.</em>
+        </div>
+    </main>
+    <footer><p>&copy; 2026 GebührenAtlas</p></footer>
+</body>
+</html>

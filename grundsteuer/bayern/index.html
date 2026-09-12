@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grundsteuer Bayern 2026: Rechner (Flächenmodell) & Hebesatz</title>
+    <meta name="description" content="Grundsteuer in Bayern und München berechnen. Aktuelle Hebesätze, Flächenmodell-Rechner für Wohnfläche und Grundstück.">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .calc-box { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-top: 4px solid #2563eb; margin: 2rem 0; }
+        .calc-row { margin-bottom: 1rem; }
+        .calc-row label { display: block; font-weight: bold; margin-bottom: 0.5rem; color: #1e293b; }
+        .calc-row input { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 1rem; }
+        .calc-result { background: #f8fafc; padding: 1.5rem; border-radius: 4px; margin-top: 1.5rem; text-align: center; border: 1px solid #e2e8f0; }
+        .calc-result h3 { margin: 0; color: #64748b; font-size: 1rem; text-transform: uppercase; }
+        .calc-result .big-price { font-size: 2.5rem; font-weight: bold; color: #0f172a; margin: 0.5rem 0; }
+        .source-box { font-size: 0.85rem; color: #64748b; background: #f1f5f9; padding: 1rem; border-radius: 4px; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <header><a href="../../index.html">🏛️ GebührenAtlas.de</a></header>
+    <main class="container">
+        <div class="breadcrumb"><a href="../../index.html">Startseite</a> &gt; <a href="../index.html">Grundsteuer</a> &gt; Bayern (München)</div>
+        
+        <h1 style="margin-bottom: 0.5rem;">Grundsteuer Bayern (Flächenmodell 2026)</h1>
+        <p style="color: #64748b; margin-top: 0;">Berechnen Sie die neue Grundsteuer B nach dem bayerischen Flächenmodell (Beispiel: Hebesatz München 535%).</p>
+
+        <div class="calc-box">
+            <div class="calc-row">
+                <label for="grundFl">Grundstücksfläche in m²</label>
+                <input type="number" id="grundFl" value="500" oninput="calculateGrundsteuer()">
+            </div>
+            <div class="calc-row">
+                <label for="wohnFl">Wohnfläche in m²</label>
+                <input type="number" id="wohnFl" value="120" oninput="calculateGrundsteuer()">
+            </div>
+            
+            <div class="calc-result">
+                <h3>Voraussichtliche Jahressteuer (München)</h3>
+                <div class="big-price"><span id="yearlyCost">331,70 €</span></div>
+                <p style="color: #475569; margin: 0; font-weight: bold;">(Hebesatz: 535%)</p>
+            </div>
+        </div>
+
+        <script>
+            function calculateGrundsteuer() {
+                let grund = parseFloat(document.getElementById('grundFl').value) || 0;
+                let wohn = parseFloat(document.getElementById('wohnFl').value) || 0;
+                
+                // Bayern Modell: (Grundstück * 0.04€) + (Wohnfläche * 0.50€ * 0.7)
+                let aequivalenz = (grund * 0.04) + (wohn * 0.50 * 0.70);
+                
+                // München Hebesatz 2026 (Beispielhaft 535%)
+                let hebesatz = 5.35; 
+                let total = aequivalenz * hebesatz;
+                
+                document.getElementById('yearlyCost').innerText = total.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
+            }
+        </script>
+
+        <div class="source-box">
+            <strong>Datengrundlage & Quelle:</strong> <br>
+            Bayerisches Grundsteuergesetz (BayGrStG). Flächenmodell mit festen Äquivalenzbeträgen.<br>
+            <em>Herausgeber: Bayerisches Landesamt für Steuern. Stand: Januar 2026.</em>
+        </div>
+    </main>
+    <footer><p>&copy; 2026 GebührenAtlas</p></footer>
+</body>
+</html>

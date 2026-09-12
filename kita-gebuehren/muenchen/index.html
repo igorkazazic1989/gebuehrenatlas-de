@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kita-Gebühren München 2026: Einkommensabhängiger Rechner</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .calc-box { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-top: 4px solid #2563eb; margin: 2rem 0; }
+        .calc-row { margin-bottom: 1rem; }
+        .calc-row label { display: block; font-weight: bold; margin-bottom: 0.5rem; color: #1e293b; }
+        .calc-row select { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 1rem; }
+        .calc-result { background: #f8fafc; padding: 1.5rem; border-radius: 4px; margin-top: 1.5rem; text-align: center; border: 1px solid #e2e8f0; }
+        .calc-result h3 { margin: 0; color: #64748b; font-size: 1rem; text-transform: uppercase; }
+        .calc-result .big-price { font-size: 2.5rem; font-weight: bold; color: #0f172a; margin: 0.5rem 0; }
+        .source-box { font-size: 0.85rem; color: #64748b; background: #f1f5f9; padding: 1rem; border-radius: 4px; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <header><a href="../../index.html">🏛️ GebührenAtlas.de</a></header>
+    <main class="container">
+        <div class="breadcrumb"><a href="../../index.html">Startseite</a> &gt; <a href="../index.html">Kita-Gebühren</a> &gt; München</div>
+        
+        <h1 style="margin-bottom: 0.5rem;">Kita-Gebühren München (2026)</h1>
+        <p style="color: #64748b; margin-top: 0;">Berechnen Sie die städtischen Krippengebühren (U3) basierend auf Einkommen und Betreuungszeit.</p>
+
+        <div class="calc-box">
+            <div class="calc-row">
+                <label for="income">Haushaltsnettoeinkommen (jährlich)</label>
+                <select id="income" onchange="calculateKita()">
+                    <option value="1">Unter 40.000 €</option>
+                    <option value="2" selected>40.000 € - 60.000 €</option>
+                    <option value="3">60.000 € - 80.000 €</option>
+                    <option value="4">Über 80.000 € (Höchstsatz)</option>
+                </select>
+            </div>
+            <div class="calc-row">
+                <label for="hours">Betreuungszeit (Stunden pro Tag)</label>
+                <select id="hours" onchange="calculateKita()">
+                    <option value="5">4-5 Stunden</option>
+                    <option value="7">6-7 Stunden</option>
+                    <option value="9">8-9 Stunden (Vollzeit)</option>
+                </select>
+            </div>
+            
+            <div class="calc-result">
+                <h3>Monatliche Elternbeiträge (Krippe)</h3>
+                <div class="big-price"><span id="monthlyCost">162,00 €</span></div>
+                <p style="color: #475569; margin: 0;">Zzgl. Verpflegungsgeld (ca. 85-110 €)</p>
+            </div>
+        </div>
+
+        <script>
+            const kitaRates = {
+                "1": { "5": 0, "7": 0, "9": 0 }, // Ermäßigung
+                "2": { "5": 115, "7": 162, "9": 208 },
+                "3": { "5": 161, "7": 226, "9": 291 },
+                "4": { "5": 214, "7": 300, "9": 386 }
+            };
+
+            function calculateKita() {
+                let inc = document.getElementById('income').value;
+                let hr = document.getElementById('hours').value;
+                let cost = kitaRates[inc][hr];
+                
+                document.getElementById('monthlyCost').innerText = cost.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
+            }
+        </script>
+
+        <div class="source-box">
+            <strong>Datengrundlage & Quelle:</strong> <br>
+            Gebührensatzung für die städtischen Kindertageseinrichtungen (Münchner Förderformel). <br>
+            <em>Herausgeber: Referat für Bildung und Sport, Stadt München. Stand: Januar 2026.</em>
+        </div>
+    </main>
+    <footer><p>&copy; 2026 GebührenAtlas</p></footer>
+</body>
+</html>
