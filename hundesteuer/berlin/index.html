@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hundesteuer Berlin 2026: Rechner & Kosten</title>
-    <meta name="description" content="Berechnen Sie die Hundesteuer in Berlin für 2026. Kosten für den ersten und jeden weiteren Hund, Befreiungen und historische Daten.">
+    <title>Hundesteuer Berlin 2026: Kosten & Anmeldung</title>
+    <meta name="description" content="Aktuelle Hundesteuer in Berlin 2026. Kosten für Erst- und Zweithund (120€ / 180€), Formulare und FAQ.">
+    <link rel="canonical" href="https://gebuehrenatlas.de/hundesteuer/berlin/">
     <link rel="stylesheet" href="../../css/styles.css">
+    
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Wie hoch ist die Hundesteuer in Berlin?", "acceptedAnswer": {"@type": "Answer", "text": "F\u00fcr den ersten Hund zahlen Sie in Berlin 120 \u20ac pro Jahr. Jeder weitere Hund kostet 180 \u20ac."}}, {"@type": "Question", "name": "Gibt es in Berlin eine Befreiung?", "acceptedAnswer": {"@type": "Answer", "text": "Ja, Blindenf\u00fchrhunde und Rettungshunde sind auf Antrag meist von der Steuer befreit."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Hundesteuer Tarife Berlin 2026", "description": "Offizielle Geb\u00fchrens\u00e4tze f\u00fcr die Hundehaltung in Berlin.", "creator": {"@type": "Organization", "name": "Geb\u00fchrenAtlas"}, "dateModified": "2026-09-12"}</script>
+    
     <style>
-        .calc-box { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-top: 4px solid #2563eb; margin: 2rem 0; }
-        .calc-row { margin-bottom: 1rem; }
-        .calc-row label { display: block; font-weight: bold; margin-bottom: 0.5rem; color: #1e293b; }
-        .calc-row select, .calc-row input { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 1rem; }
-        .calc-result { background: #f8fafc; padding: 1.5rem; border-radius: 4px; margin-top: 1.5rem; text-align: center; border: 1px solid #e2e8f0; }
-        .calc-result h3 { margin: 0; color: #64748b; font-size: 1rem; text-transform: uppercase; }
-        .calc-result .big-price { font-size: 2.5rem; font-weight: bold; color: #0f172a; margin: 0.5rem 0; }
-        .source-box { font-size: 0.85rem; color: #64748b; background: #f1f5f9; padding: 1rem; border-radius: 4px; margin-top: 2rem; }
-        .history-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
-        .history-table th, .history-table td { text-align: left; padding: 0.75rem; border-bottom: 1px solid #e2e8f0; }
-        .history-table th { background: #f8fafc; }
+        .data-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+        .data-table th, .data-table td { padding: 1rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        .data-table th { background: #f8fafc; color: #1e293b; width: 40%; }
+        .source-box { font-size: 0.85rem; color: #64748b; background: #f1f5f9; padding: 1rem; border-radius: 4px; margin-top: 2rem; border-left: 4px solid #cbd5e1; }
     </style>
 </head>
 <body>
@@ -25,61 +23,31 @@
     <main class="container">
         <div class="breadcrumb"><a href="../../index.html">Startseite</a> &gt; <a href="../index.html">Hundesteuer</a> &gt; Berlin</div>
         
-        <h1 style="margin-bottom: 0.5rem;">Hundesteuer Berlin (2026)</h1>
-        <p style="color: #64748b; margin-top: 0;">Berechnen Sie die jährliche Steuerlast für Ihre Hunde in der Bundeshauptstadt.</p>
+        <h1>Hundesteuer in Berlin (2026)</h1>
+        <p>Übersicht der aktuellen Tarife und Gebühren für Hundehalter in der Region Berlin.</p>
 
-        <div class="calc-box">
-            <div class="calc-row">
-                <label for="dogCount">Anzahl der Hunde im Haushalt</label>
-                <select id="dogCount" onchange="calculateHundesteuer()">
-                    <option value="1">1 Hund</option>
-                    <option value="2">2 Hunde</option>
-                    <option value="3">3 Hunde</option>
-                </select>
-            </div>
-            
-            <div class="calc-result">
-                <h3>Ihre jährliche Hundesteuer</h3>
-                <div class="big-price"><span id="yearlyCost">120,00 €</span></div>
-                <p style="color: #475569; margin: 0; font-weight: bold;">(120 € für den ersten, 180 € für jeden weiteren Hund)</p>
-            </div>
+        <div class="card">
+            <table class="data-table">
+                <tr><th>1. Hund (jährlich)</th><td><strong>120,00 €</strong></td></tr>
+                <tr><th>2. und jeder weitere Hund</th><td><strong>180,00 €</strong></td></tr>
+                <tr><th>Gefährliche Hunde (Listenhunde)</th><td>auf Anfrage beim Ordnungsamt</td></tr>
+            </table>
         </div>
 
-        <script>
-            function calculateHundesteuer() {
-                let count = parseInt(document.getElementById('dogCount').value);
-                let cost = 120; // 1. Hund
-                if (count > 1) {
-                    cost += (count - 1) * 180; // Jeder weitere Hund
-                }
-                document.getElementById('yearlyCost').innerText = cost.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
-            }
-        </script>
-
-        <h2>Historische Preisentwicklung</h2>
-        <table class="history-table">
-            <thead>
-                <tr>
-                    <th>Jahr</th>
-                    <th>1. Hund</th>
-                    <th>Jeder weitere Hund</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td><strong>2026</strong></td><td>120,00 €</td><td>180,00 €</td></tr>
-                <tr><td>2025</td><td>120,00 €</td><td>180,00 €</td></tr>
-                <tr><td>2020</td><td>120,00 €</td><td>180,00 €</td></tr>
-            </tbody>
-        </table>
+        <h2>Häufige Fragen (FAQ)</h2>
+        <div class="card">
+            <h3>Wie hoch ist die Hundesteuer in Berlin?</h3>
+            <p>Für den ersten Hund zahlen Sie in Berlin 120 € pro Jahr. Jeder weitere Hund kostet 180 €.</p>
+            <h3>Gibt es Befreiungen?</h3>
+            <p>Ja, Blindenführhunde und Rettungshunde sind auf Antrag meist von der Steuer befreit.</p>
+        </div>
 
         <div class="source-box">
-            <strong>Datengrundlage & Quelle:</strong> <br>
-            Hundesteuergesetz (HundeStG) des Landes Berlin. Besonderheit: Keine gesonderte Kampfhundesteuer in Berlin. <br>
-            <em>Herausgeber: Senatsverwaltung für Finanzen. Stand: Januar 2026.</em>
+            <strong>Quelle & Datengrundlage:</strong><br>
+            Hundesteuersatzung der Stadt Berlin, Berlin.<br>
+            <em>Zuletzt aktualisiert: 2026-09-12.</em>
         </div>
     </main>
-    <footer>
-        <p>&copy; 2026 GebührenAtlas</p>
-    </footer>
+    <footer style="margin-top: 4rem;"><p>&copy; 2026 GebührenAtlas</p></footer>
 </body>
 </html>
