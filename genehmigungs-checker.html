@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genehmigungsfrei-Checker: Sofort prüfen, ob Ihr Bauvorhaben genehmigungsfrei ist</title>
+<meta name="description" content="Kostenloser Schnell-Check: Gartenhaus, Carport, Garage, Pool oder Terrasse eingeben und sofort erfahren, ob eine Baugenehmigung nötig ist – nach Bundesland.">
+<link rel="canonical" href="https://gebuehrenatlas.de/genehmigungs-checker.html">
+<style>
+  :root{
+    --blue:#0b4f8a; --blue-dark:#083a66; --bg:#f7f9fb; --border:#e2e8ef;
+    --text:#1f2933; --muted:#5b6670; --accent:#e8f1fa;
+    --ok-bg:#e6f6ec; --ok-border:#2f9e57; --ok-text:#1e6b3a;
+    --no-bg:#fdecec; --no-border:#c0392b; --no-text:#8f2a20;
+    --warn-bg:#fff8e6; --warn-border:#c98a06; --warn-text:#7a5405;
+  }
+  *{box-sizing:border-box;}
+  body{font-family:"Segoe UI",Arial,sans-serif;margin:0;color:var(--text);background:#fff;line-height:1.55;}
+  header{background:var(--blue-dark);padding:14px 24px;}
+  header a{color:#fff;text-decoration:none;font-weight:700;font-size:1.1rem;}
+  .breadcrumb{font-size:.85rem;color:var(--muted);margin:16px 24px 0;}
+  .breadcrumb a{color:var(--blue);text-decoration:none;}
+  main{max-width:760px;margin:0 auto;padding:0 24px 60px;}
+  h1{font-size:1.6rem;color:var(--blue-dark);margin-top:18px;}
+  .lead{font-size:1.05rem;color:var(--muted);}
+  .tool{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:24px;margin:26px 0;}
+  .tool label{display:block;font-size:.85rem;font-weight:600;margin:14px 0 5px;}
+  .tool select, .tool input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:6px;font-size:.95rem;background:#fff;}
+  .row{display:flex;gap:14px;}
+  .row > div{flex:1;}
+  .btn{display:inline-block;background:var(--blue);color:#fff;border:none;padding:13px 24px;border-radius:6px;font-weight:600;margin-top:20px;cursor:pointer;font-size:1rem;width:100%;}
+  .btn:hover{background:var(--blue-dark);}
+  #result{margin-top:22px;padding:18px 20px;border-radius:8px;border:1.5px solid; display:none;}
+  #result.ok{background:var(--ok-bg);border-color:var(--ok-border);color:var(--ok-text);}
+  #result.no{background:var(--no-bg);border-color:var(--no-border);color:var(--no-text);}
+  #result.warn{background:var(--warn-bg);border-color:var(--warn-border);color:var(--warn-text);}
+  #result .verdict{font-size:1.1rem;font-weight:700;margin-bottom:6px;}
+  #result .basis{font-size:.85rem;opacity:.85;margin-top:8px;}
+  .cta-box{background:var(--accent);border:1px solid var(--border);border-radius:10px;padding:18px 22px;margin-top:22px;display:none;}
+  .cta-box a.btn2{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;padding:10px 18px;border-radius:6px;font-weight:600;margin-top:10px;font-size:.9rem;}
+  .disclaimer{font-size:.78rem;color:var(--muted);margin-top:26px;}
+  footer{border-top:1px solid var(--border);margin-top:50px;padding:24px;text-align:center;font-size:.8rem;color:var(--muted);}
+  footer a{color:var(--muted);}
+  .hidden{display:none;}
+</style>
+</head>
+<body>
+
+<header><a href="index.html">GebührenAtlas</a></header>
+<p class="breadcrumb"><a href="index.html">GebührenAtlas</a> &gt; Genehmigungsfrei-Checker</p>
+
+<main>
+  <h1>Genehmigungsfrei-Checker</h1>
+  <p class="lead">Wählen Sie Ihr Bauvorhaben, Ihr Bundesland und geben Sie die Maße ein – der Checker sagt Ihnen sofort, ob Ihr Vorhaben nach der aktuellen Landesbauordnung genehmigungsfrei ist.</p>
+
+  <div class="tool">
+    <label for="projekt">Was möchten Sie bauen? *</label>
+    <select id="projekt" onchange="renderFields()">
+      <option value="gartenhaus">Gartenhaus</option>
+      <option value="carport">Carport</option>
+      <option value="garage">Garage</option>
+      <option value="pool">Pool / Schwimmbecken</option>
+      <option value="terrasse">Terrassenüberdachung</option>
+    </select>
+
+    <label for="bundesland">Bundesland *</label>
+    <select id="bundesland" onchange="renderFields()">
+      <option value="Baden-Württemberg">Baden-Württemberg</option>
+      <option value="Bayern">Bayern</option>
+      <option value="Berlin">Berlin</option>
+      <option value="Brandenburg">Brandenburg</option>
+      <option value="Bremen">Bremen</option>
+      <option value="Hamburg">Hamburg</option>
+      <option value="Hessen">Hessen</option>
+      <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
+      <option value="Niedersachsen">Niedersachsen</option>
+      <option value="Nordrhein-Westfalen" selected>Nordrhein-Westfalen</option>
+      <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
+      <option value="Saarland">Saarland</option>
+      <option value="Sachsen">Sachsen</option>
+      <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
+      <option value="Schleswig-Holstein">Schleswig-Holstein</option>
+      <option value="Thüringen">Thüringen</option>
+    </select>
+
+    <div id="dynamicFields"></div>
+
+    <button class="btn" onclick="check()">Jetzt prüfen →</button>
+
+    <div id="result"></div>
+
+    <div class="cta-box" id="ctaBox">
+      <strong>Unsicher oder direkt an der Grenze?</strong>
+      <p style="margin:6px 0 0;font-size:.9rem;">Lassen Sie Ihr Vorhaben von einem geprüften Fachbetrieb oder Architekten aus Ihrer Region kostenlos und unverbindlich prüfen.</p>
+      <a class="btn2" href="index.html#vermittlung">Kostenlose Fachangebote anfordern →</a>
+    </div>
+  </div>
+
+  <p class="disclaimer">
+    Der Genehmigungsfrei-Checker basiert auf den öffentlich bekannten Grenzwerten der Landesbauordnungen (LBO), Stand September 2026, und ersetzt keine Rechtsberatung. Kommunale Satzungen, Bebauungspläne, Denkmalschutz- oder Wasserschutzgebiete können abweichende oder strengere Regeln vorsehen. Holen Sie im Zweifel eine verbindliche Auskunft (Bauvoranfrage) bei Ihrem örtlichen Bauamt ein. Zuletzt geprüft: September 2026 von Igor Kazazic.
+  </p>
+</main>
+
+<footer>
+  © 2026 GebührenAtlas.de – Ihr unabhängiges Bau- und Genehmigungsportal.<br>
+  <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a> | <a href="agb.html">AGB</a>
+</footer>
+
+<script>
+const RULES = {
+  gartenhaus: {
+    unit: "m³ Brutto-Rauminhalt",
+    basisFallback: "Landesbauordnung (LBO), bundesweite Faustregel",
+    values: {
+      "Bayern": {limit: 75, basis: "Art. 57 BayBO"},
+      "Sachsen": {limit: 75, basis: "SächsBO (eingeschossig)"},
+      "Brandenburg": {limit: 75, basis: "BbgBO"},
+      "Nordrhein-Westfalen": {limit: 75, basis: "BauO NRW (kommunal teils abweichend, ggf. nur 30 m³)"},
+    },
+    fallbackLimit: 10,
+  },
+  carport: {
+    unit: "m² Grundfläche",
+    basisFallback: "Landesbauordnung (LBO)",
+    values: {
+      "Bayern": {limit: 50, basis: "Art. 57 Abs. 1 Nr. 1b BayBO"},
+      "Baden-Württemberg": {limit: 30, basis: "Art. 50 Abs. 1 LBO"},
+      "Berlin": {limit: 30, basis: "§ 61 BauOBln"},
+      "Brandenburg": {limit: 50, basis: "§ 61 BbgBO"},
+      "Bremen": {limit: 50, basis: "§ 61 BremLBO"},
+      "Hamburg": {limit: 50, basis: "Anlage 2 zu § 60 HBauO"},
+      "Hessen": {limit: 50, basis: "Anlage 2 zu § 55 HBO"},
+      "Mecklenburg-Vorpommern": {limit: 30, basis: "§ 61 LBauO M-V"},
+      "Nordrhein-Westfalen": {limit: 30, basis: "§ 62 BauO NRW"},
+    },
+    fallbackLimit: 30,
+  },
+  garage: {
+    unit: "m² Grundfläche",
+    basisFallback: "Landesbauordnung (LBO), bundesweite Faustregel",
+    values: {
+      "Nordrhein-Westfalen": {limit: 30, basis: "§ 62 BauO NRW"},
+      "Mecklenburg-Vorpommern": {limit: 30, basis: "LBauO M-V"},
+    },
+    fallbackLimit: 50,
+  },
+  pool: {
+    unit: "m³ Beckeninhalt",
+    basisFallback: "Musterbauordnung, § 61 Nr. 10a MBO",
+    values: {
+      "Bayern": {limitInnen: 100, limitAussen: 50, basis: "Art. 57 BayBO"},
+      "Baden-Württemberg": {limitInnen: 100, limitAussen: 10, basis: "LBO Baden-Württemberg"},
+    },
+    fallbackLimitInnen: 100,
+    fallbackLimitAussen: 100,
+    needsLage: true,
+  },
+  terrasse: {
+    unit: "m² Fläche",
+    basisFallback: "Landesbauordnung (LBO)",
+    values: {
+      "Bayern": {limit: 30, tiefe: 3, basis: "BayBO"},
+      "Baden-Württemberg": {limit: 30, tiefe: null, basis: "LBO Baden-Württemberg"},
+      "Berlin": {limit: 30, tiefe: 3, basis: "BauO Bln"},
+      "Brandenburg": {limit: 20, tiefe: 4, basis: "BbgBO"},
+      "Bremen": {limit: 30, tiefe: 3.5, basis: "BremLBO"},
+      "Hamburg": {limit: 30, tiefe: 3, basis: "HBauO"},
+      "Mecklenburg-Vorpommern": {limit: 30, tiefe: 3, basis: "LBauO M-V"},
+      "Niedersachsen": {limit: 30, tiefe: null, basis: "NBauO"},
+      "Nordrhein-Westfalen": {limit: 30, tiefe: 4.5, basis: "BauO NRW"},
+      "Rheinland-Pfalz": {limit: null, tiefe: null, basis: "LBauO (Grenze: 50 m³ Rauminhalt statt Fläche)"},
+      "Saarland": {limit: 36, tiefe: 3, basis: "LBO Saarland"},
+      "Sachsen": {limit: 50, tiefe: 3, basis: "SächsBO"},
+      "Sachsen-Anhalt": {limit: 30, tiefe: 3, basis: "BauO LSA"},
+      "Hessen": {limit: null, tiefe: null, basis: "HBO (keine feste Größengrenze genannt)"},
+    },
+    fallbackLimit: 30,
+    fallbackTiefe: 3,
+  },
+};
+
+function renderFields(){
+  const projekt = document.getElementById("projekt").value;
+  const container = document.getElementById("dynamicFields");
+  document.getElementById("result").style.display = "none";
+  document.getElementById("ctaBox").style.display = "none";
+
+  if(projekt === "pool"){
+    container.innerHTML = `
+      <label for="volumen">Beckeninhalt (m³) *</label>
+      <input type="number" id="volumen" min="0" step="0.1" placeholder="z. B. 48">
+      <label for="lage">Lage des Grundstücks *</label>
+      <select id="lage">
+        <option value="innen">Innenbereich (bebautes Wohngebiet)</option>
+        <option value="aussen">Außenbereich (außerhalb der Ortslage)</option>
+      </select>
+    `;
+  } else if(projekt === "terrasse"){
+    container.innerHTML = `
+      <div class="row">
+        <div>
+          <label for="flaeche">Fläche (m²) *</label>
+          <input type="number" id="flaeche" min="0" step="0.1" placeholder="z. B. 25">
+        </div>
+        <div>
+          <label for="tiefe">Tiefe (m)</label>
+          <input type="number" id="tiefe" min="0" step="0.1" placeholder="z. B. 3">
+        </div>
+      </div>
+    `;
+  } else if(projekt === "gartenhaus"){
+    container.innerHTML = `
+      <label for="volumen">Brutto-Rauminhalt (m³) *</label>
+      <input type="number" id="volumen" min="0" step="0.1" placeholder="z. B. 18">
+    `;
+  } else {
+    container.innerHTML = `
+      <label for="flaeche">Grundfläche (m²) *</label>
+      <input type="number" id="flaeche" min="0" step="0.1" placeholder="z. B. 24">
+    `;
+  }
+}
+
+function showResult(cls, verdict, detail, basis){
+  const el = document.getElementById("result");
+  el.className = cls;
+  el.style.display = "block";
+  el.innerHTML = `<div class="verdict">${verdict}</div><div>${detail}</div><div class="basis">Rechtsgrundlage: ${basis}. Allgemeine Auskunft, keine Rechtsberatung – im Zweifel beim Bauamt nachfragen.</div>`;
+  document.getElementById("ctaBox").style.display = "block";
+}
+
+function check(){
+  const projekt = document.getElementById("projekt").value;
+  const bundesland = document.getElementById("bundesland").value;
+  const rule = RULES[projekt];
+
+  if(projekt === "pool"){
+    const vol = parseFloat(document.getElementById("volumen").value);
+    const lage = document.getElementById("lage").value;
+    if(isNaN(vol)){ alert("Bitte den Beckeninhalt eingeben."); return; }
+    const spec = rule.values[bundesland];
+    let limit, basis;
+    if(spec){
+      limit = lage === "aussen" ? spec.limitAussen : spec.limitInnen;
+      basis = spec.basis;
+    } else {
+      limit = lage === "aussen" ? rule.fallbackLimitAussen : rule.fallbackLimitInnen;
+      basis = rule.basisFallback;
+    }
+    if(vol <= limit){
+      showResult("ok", "✅ Voraussichtlich genehmigungsfrei", `Ihr Pool mit ${vol} m³ liegt unter der Grenze von ${limit} m³ (${lage === "aussen" ? "Außenbereich" : "Innenbereich"}) in ${bundesland}.`, basis);
+    } else {
+      showResult("no", "❌ Voraussichtlich genehmigungspflichtig", `Ihr Pool mit ${vol} m³ überschreitet die Grenze von ${limit} m³ in ${bundesland}. Ein Bauantrag ist wahrscheinlich erforderlich.`, basis);
+    }
+    return;
+  }
+
+  if(projekt === "terrasse"){
+    const flaeche = parseFloat(document.getElementById("flaeche").value);
+    const tiefeInput = parseFloat(document.getElementById("tiefe").value);
+    if(isNaN(flaeche)){ alert("Bitte die Fläche eingeben."); return; }
+    const spec = rule.values[bundesland] || {limit: rule.fallbackLimit, tiefe: rule.fallbackTiefe, basis: rule.basisFallback};
+    if(spec.limit === null){
+      showResult("warn", "⚠️ Keine pauschale Größengrenze bekannt", `Für ${bundesland} ist keine feste Flächengrenze in der Landesbauordnung hinterlegt (${spec.basis}). Bitte beim örtlichen Bauamt nachfragen.`, spec.basis);
+      return;
+    }
+    const flaecheOk = flaeche <= spec.limit;
+    const tiefeOk = spec.tiefe === null || isNaN(tiefeInput) || tiefeInput <= spec.tiefe;
+    if(flaecheOk && tiefeOk){
+      showResult("ok", "✅ Voraussichtlich genehmigungsfrei", `${flaeche} m² liegt innerhalb der Grenze von ${spec.limit} m²${spec.tiefe ? ` (Tiefe max. ${spec.tiefe} m)` : ""} in ${bundesland}.`, spec.basis);
+    } else {
+      showResult("no", "❌ Voraussichtlich genehmigungspflichtig", `${flaeche} m² überschreitet die Grenze von ${spec.limit} m²${spec.tiefe && !tiefeOk ? ` oder die maximale Tiefe von ${spec.tiefe} m` : ""} in ${bundesland}.`, spec.basis);
+    }
+    return;
+  }
+
+  const inputId = projekt === "gartenhaus" ? "volumen" : "flaeche";
+  const value = parseFloat(document.getElementById(inputId).value);
+  if(isNaN(value)){ alert("Bitte die Maße eingeben."); return; }
+  const spec = rule.values[bundesland];
+  const limit = spec ? spec.limit : rule.fallbackLimit;
+  const basis = spec ? spec.basis : rule.basisFallback;
+
+  if(value <= limit){
+    showResult("ok", "✅ Voraussichtlich genehmigungsfrei", `${value} ${rule.unit.split(" ")[0]} liegt innerhalb der Grenze von ${limit} ${rule.unit} in ${bundesland}.`, basis);
+  } else {
+    showResult("no", "❌ Voraussichtlich genehmigungspflichtig", `${value} ${rule.unit.split(" ")[0]} überschreitet die Grenze von ${limit} ${rule.unit} in ${bundesland}. Ein Bauantrag ist wahrscheinlich erforderlich.`, basis);
+  }
+}
+
+renderFields();
+</script>
+
+</body>
+</html>
